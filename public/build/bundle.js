@@ -345,7 +345,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (28:3) {#each filteredList as name}
+    // (31:3) {#each filteredCountryList as name}
     function create_each_block(ctx) {
     	let li;
     	let t_value = /*name*/ ctx[5].name + "";
@@ -356,14 +356,14 @@ var app = (function () {
     			li = element("li");
     			t = text(t_value);
     			attr_dev(li, "class", "svelte-1ylwypo");
-    			add_location(li, file, 28, 6, 690);
+    			add_location(li, file, 31, 6, 1217);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, li, anchor);
     			append_dev(li, t);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*filteredList*/ 2 && t_value !== (t_value = /*name*/ ctx[5].name + "")) set_data_dev(t, t_value);
+    			if (dirty & /*filteredCountryList*/ 2 && t_value !== (t_value = /*name*/ ctx[5].name + "")) set_data_dev(t, t_value);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(li);
@@ -374,14 +374,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(28:3) {#each filteredList as name}",
+    		source: "(31:3) {#each filteredCountryList as name}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (32:2) {#if filteredList == ''}
+    // (35:2) {#if filteredCountryList == ''}
     function create_if_block(ctx) {
     	let p;
     	let t0;
@@ -392,10 +392,10 @@ var app = (function () {
     		c: function create() {
     			p = element("p");
     			t0 = text("There is no item matching '");
-    			t1 = text(/*q*/ ctx[0]);
+    			t1 = text(/*searchingCountryName*/ ctx[0]);
     			t2 = text("' that can be displayed.");
     			attr_dev(p, "class", "filter-no-match svelte-1ylwypo");
-    			add_location(p, file, 32, 2, 760);
+    			add_location(p, file, 35, 2, 1294);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, p, anchor);
@@ -404,7 +404,7 @@ var app = (function () {
     			append_dev(p, t2);
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*q*/ 1) set_data_dev(t1, /*q*/ ctx[0]);
+    			if (dirty & /*searchingCountryName*/ 1) set_data_dev(t1, /*searchingCountryName*/ ctx[0]);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(p);
@@ -415,7 +415,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(32:2) {#if filteredList == ''}",
+    		source: "(35:2) {#if filteredCountryList == ''}",
     		ctx
     	});
 
@@ -430,14 +430,14 @@ var app = (function () {
     	let ul;
     	let t1;
     	let dispose;
-    	let each_value = /*filteredList*/ ctx[1];
+    	let each_value = /*filteredCountryList*/ ctx[1];
     	let each_blocks = [];
 
     	for (let i = 0; i < each_value.length; i += 1) {
     		each_blocks[i] = create_each_block(get_each_context(ctx, each_value, i));
     	}
 
-    	let if_block = /*filteredList*/ ctx[1] == "" && create_if_block(ctx);
+    	let if_block = /*filteredCountryList*/ ctx[1] == "" && create_if_block(ctx);
 
     	const block = {
     		c: function create() {
@@ -455,13 +455,13 @@ var app = (function () {
     			if (if_block) if_block.c();
     			attr_dev(input, "type", "text");
     			attr_dev(input, "class", "search svelte-1ylwypo");
-    			add_location(input, file, 24, 4, 566);
+    			add_location(input, file, 27, 4, 1067);
     			attr_dev(div0, "class", "filter-search");
-    			add_location(div0, file, 23, 2, 534);
+    			add_location(div0, file, 26, 2, 1035);
     			attr_dev(ul, "class", "filter-list svelte-1ylwypo");
-    			add_location(ul, file, 26, 2, 627);
+    			add_location(ul, file, 29, 2, 1147);
     			attr_dev(div1, "class", "filtering-list svelte-1ylwypo");
-    			add_location(div1, file, 22, 0, 503);
+    			add_location(div1, file, 25, 0, 1004);
     			dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[4]);
     		},
     		l: function claim(nodes) {
@@ -471,7 +471,7 @@ var app = (function () {
     			insert_dev(target, div1, anchor);
     			append_dev(div1, div0);
     			append_dev(div0, input);
-    			set_input_value(input, /*q*/ ctx[0]);
+    			set_input_value(input, /*searchingCountryName*/ ctx[0]);
     			append_dev(div1, t0);
     			append_dev(div1, ul);
 
@@ -483,12 +483,12 @@ var app = (function () {
     			if (if_block) if_block.m(div1, null);
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*q*/ 1 && input.value !== /*q*/ ctx[0]) {
-    				set_input_value(input, /*q*/ ctx[0]);
+    			if (dirty & /*searchingCountryName*/ 1 && input.value !== /*searchingCountryName*/ ctx[0]) {
+    				set_input_value(input, /*searchingCountryName*/ ctx[0]);
     			}
 
-    			if (dirty & /*filteredList*/ 2) {
-    				each_value = /*filteredList*/ ctx[1];
+    			if (dirty & /*filteredCountryList*/ 2) {
+    				each_value = /*filteredCountryList*/ ctx[1];
     				let i;
 
     				for (i = 0; i < each_value.length; i += 1) {
@@ -510,7 +510,7 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (/*filteredList*/ ctx[1] == "") {
+    			if (/*filteredCountryList*/ ctx[1] == "") {
     				if (if_block) {
     					if_block.p(ctx, dirty);
     				} else {
@@ -545,24 +545,24 @@ var app = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	let q = "";
-    	let list = [];
-    	let filteredList = [];
-    	let startsWith = (item, query) => item.toLowerCase().indexOf(query.toLowerCase()) != -1;
+    	let searchingCountryName = "";
+    	let countryNameList = [];
+    	let filteredCountryList = [];
+    	let CountryNamestartsWith = (countryName, searchingCountryName) => countryName.toLowerCase().indexOf(searchingCountryName.toLowerCase()) != -1;
 
     	onMount(async function () {
     		try {
     			const response = await fetch("https://restcountries.eu/rest/v2/all");
     			const json = await response.json();
-    			$$invalidate(2, list = json);
-    		} catch(err) {
-    			alert(err);
+    			$$invalidate(2, countryNameList = json);
+    		} catch(error) {
+    			alert(error);
     		}
     	});
 
     	function input_input_handler() {
-    		q = this.value;
-    		$$invalidate(0, q);
+    		searchingCountryName = this.value;
+    		$$invalidate(0, searchingCountryName);
     	}
 
     	$$self.$capture_state = () => {
@@ -570,21 +570,27 @@ var app = (function () {
     	};
 
     	$$self.$inject_state = $$props => {
-    		if ("q" in $$props) $$invalidate(0, q = $$props.q);
-    		if ("list" in $$props) $$invalidate(2, list = $$props.list);
-    		if ("filteredList" in $$props) $$invalidate(1, filteredList = $$props.filteredList);
-    		if ("startsWith" in $$props) $$invalidate(3, startsWith = $$props.startsWith);
+    		if ("searchingCountryName" in $$props) $$invalidate(0, searchingCountryName = $$props.searchingCountryName);
+    		if ("countryNameList" in $$props) $$invalidate(2, countryNameList = $$props.countryNameList);
+    		if ("filteredCountryList" in $$props) $$invalidate(1, filteredCountryList = $$props.filteredCountryList);
+    		if ("CountryNamestartsWith" in $$props) $$invalidate(3, CountryNamestartsWith = $$props.CountryNamestartsWith);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*q, list*/ 5) {
-    			 $$invalidate(1, filteredList = q && q.length
-    			? list.filter(item => startsWith(item.name, q))
-    			: list);
+    		if ($$self.$$.dirty & /*searchingCountryName, countryNameList*/ 5) {
+    			 $$invalidate(1, filteredCountryList = searchingCountryName && searchingCountryName.length
+    			? countryNameList.filter(countryNameObject => CountryNamestartsWith(countryNameObject.name, searchingCountryName))
+    			: countryNameList);
     		}
     	};
 
-    	return [q, filteredList, list, startsWith, input_input_handler];
+    	return [
+    		searchingCountryName,
+    		filteredCountryList,
+    		countryNameList,
+    		CountryNamestartsWith,
+    		input_input_handler
+    	];
     }
 
     class SearchComponent extends SvelteComponentDev {

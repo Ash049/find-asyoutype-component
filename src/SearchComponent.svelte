@@ -1,36 +1,39 @@
 <script>
 	import { onMount } from "svelte";
-    let q=''
-	let list = [];
-	let filteredList =[];
-	let startsWith = (item, query) => item.toLowerCase().indexOf(query.toLowerCase()) != -1;
+    let searchingCountryName=''
+	let countryNameList = [];
+	let filteredCountryList =[];
+	//checking for valid substring (entered searchingCountryName) of avaliable country name(countryName)
+	let CountryNamestartsWith = (countryName, searchingCountryName) => countryName.toLowerCase().indexOf(searchingCountryName.toLowerCase()) != -1;
+	//Fetching all the country name from API (https://restcountries.eu/rest/v2/all)
 	onMount(async function() {
 		try{
-			const response = await fetch("https://restcountries.eu/rest/v2/all");
-    const json = await response.json();
-		list =json
+		const response = await fetch("https://restcountries.eu/rest/v2/all");
+        const json = await response.json();
+		countryNameList =json
 		}
-		catch(err){
-			alert(err)
+		catch(error){
+			alert(error)
 		}
     
   });
-$: filteredList =  q && q.length 
-					? list.filter(item=> startsWith(item.name, q)) : list;
+  //Filtering country names with respect to searched keywords(searched country name)
+$: filteredCountryList =  searchingCountryName && searchingCountryName.length 
+					? countryNameList.filter(countryNameObject=> CountryNamestartsWith(countryNameObject.name, searchingCountryName)) : countryNameList;
 	 
 	
 </script>
 <div class="filtering-list">
   <div class="filter-search">
-    <input bind:value={q} type="text" class="search">
+    <input bind:value={searchingCountryName} type="text" class="search">
   </div>
 		<ul class="filter-list">
-   {#each filteredList as name}
+   {#each filteredCountryList as name}
       <li>{name.name}</li>
     {/each}
   </ul>
-		{#if filteredList == ''}
-		<p class="filter-no-match">There is no item matching '{q}' that can be displayed.</p>
+		{#if filteredCountryList == ''}
+		<p class="filter-no-match">There is no item matching '{searchingCountryName}' that can be displayed.</p>
 	{/if}
 </div>
 
